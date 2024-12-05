@@ -1,0 +1,30 @@
+.product-grid {
+  display: grid; /* Enables the grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid with minimum 200px per column */
+  gap: 20px; /* Adds spacing between items */
+  padding: 20px; /* Optional: adds padding inside the grid */
+}
+
+.product {
+  text-align: center; /* Centers product content */
+  border: 1px solid #ddd; /* Optional: adds a light border */
+  border-radius: 10px; /* Optional: adds rounded corners */
+  padding: 10px; /* Optional: adds space around the product content */
+  background-color: #fff; /* Optional: ensures a white background */
+}
+
+.product img {
+  max-width: 100%; /* Ensures images are responsive */
+  border-radius: 5px; /* Optional: rounded image corners */
+}
+
+.product h3 {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.product p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000; /* Optional: sets the price color */
+}

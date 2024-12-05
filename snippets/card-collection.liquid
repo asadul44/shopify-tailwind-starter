@@ -12,7 +12,7 @@
   Usage:
   {% render 'card-collection' %}
 {% endcomment %}
-{% comment %} 
+
 {%- liquid
   assign ratio = 1
   if card_collection.featured_image and media_aspect_ratio == 'portrait'
@@ -156,11 +156,10 @@
       </div>
     {%- endif -%}
   </div>
-</div> {% endcomment %}
-<div >
+</div> 
+{% comment %} <div >
   <section aria-labelledby="category-heading" class="twcss-pt-24 sm:twcss-pt-32 xl:twcss-mx-auto xl:twcss-max-w-7xl xl:twcss-px-8">
     <div class="twcss-px-4 sm:twcss-flex sm:twcss-items-center sm:twcss-justify-between sm:twcss-px-6 lg:twcss-px-8 xl:twcss-px-0">
-      <h2 id="category-heading" class="twcss-text-2xl twcss-font-bold twcss-tracking-tight twcss-text-gray-900">Shop by Category</h2>
       <a href="{{ card_collection.url }}" class="twcss-hidden twcss-text-sm twcss-font-semibold twcss-text-indigo-600 hover:twcss-text-indigo-500 sm:twcss-block">
         Browse all categories
         <span aria-hidden="true"> &rarr;</span>
@@ -194,4 +193,4 @@
       </div>
     </div>
   </section>
-</div>
+</div> {% endcomment %}

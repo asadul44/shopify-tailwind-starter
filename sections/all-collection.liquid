@@ -1,0 +1,90 @@
+{% comment %} <section class="all-collections">
+    <h1 class="twcss-flex twcss-text-center">New  Araival</h1>
+    <div class="collection-container">
+      <div class="all-collections-wrapper">
+        {% for collection in collections %}
+          <div class="collection-card">
+            <img
+              width="300"
+              height="300"
+              loading="lazy"
+              src="{{ collection.featured_image | image_url}}"
+            >
+            <h3>{{- collection.title | link_to: collection.url }}</h3>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+   {% endcomment %}
+   <section class="products new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="product-grid" style="display: flex; flex-wrap: wrap;"> <!-- Added flexbox styling -->
+    {% for product in collections['new-arrivals'].products %}
+        <div class="product" style="margin: 10px; flex: 1 1 200px;"> <!-- Added flex property for responsiveness -->
+          <a href="{{ product.url }}"> <!-- Added link to product detail page -->
+            <img src="{{ product.featured_image | image_url}}" alt="{{ product.title }}" width="300" height="300">
+          </a> <!-- Closing anchor tag -->
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.price | money }}</p>
+        </div>
+    {% endfor %}
+    </div> <!-- Closing product-grid div -->
+    <a href={{ collection.url }} class="btn-secondary">View All</a>
+  </section>
+  
+  <style>
+    @media (max-width: 600px) { /* Mobile responsiveness */
+      .product-grid {
+        flex-direction: column; /* Stack products vertically on small screens */
+      }
+    }
+  </style>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const wrapper = document.querySelector('.all-collections-wrapper');
+      const scrollLeftButton = document.querySelector('.scroll-left');
+      const scrollRightButton = document.querySelector('.scroll-right');
+  
+      scrollLeftButton.addEventListener('click', function () {
+        wrapper.scrollBy({
+          left: -300, // Adjust based on your card width
+          behavior: 'smooth',
+        });
+      });
+  
+      scrollRightButton.addEventListener('click', function () {
+        wrapper.scrollBy({
+          left: 300, // Adjust based on your card width
+          behavior: 'smooth',
+        });
+      });
+    });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "all-collections",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#F4F4F4"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text",
+        "default": "#000000"
+      }
+    ],
+    "presets": [
+      {
+        "name": "all-collections"
+      }
+    ]
+  }
+  {% endschema %}

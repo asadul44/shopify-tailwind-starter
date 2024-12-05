@@ -1,0 +1,75 @@
+
+
+
+{% for product in collection.products%}
+   
+  <p>{{forloop.index }}-{{ product.title }} {{ forloop.length }}</p>
+    <img src="{{ product.featured_image | image_url}}" width="30" height="30">
+
+    {% if product.tags.size > 0 %}
+      <h2>Tags</h2>
+      <ul>
+       {% for tag in product.tags %}
+         <li>{{ tag }}</li>
+       {% endfor %}
+     </ul> 
+    {% endif %}
+
+{% if product.type.size > 0 %}
+  <h2>Type</h2>
+  <ul>
+    <li>{{ product.type }}</li> 
+  </ul>
+  {% endif %}
+    <h2>Category</h2>
+  <ul>
+    <li>{{ product.category }}</li>
+  </ul>
+
+  <h2>Varaient</h2>
+  <ul>
+   {% for variant in product.variants %}
+
+    <li>{{ variant.inventory_quantity }}</li>
+    {% endfor %}
+  </ul> 
+{{ product.available }}
+  {% if current_variant.inventory_quantity > 0 and current_variant.inventory_management == 'shopify' %}
+    Stock: {{ current_variant.inventory_quantity }}
+  {% endif %}
+{% endfor %} 
+
+
+{% comment %} <p>hello world</p>
+ {{ 'tutorial.css' | asset_url | stylesheet_tag }}
+
+ <section class="products new-arrivals">
+    <h2>New Arrivals</h2>
+  {% for product in collections %}
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="{{ collection.featured_image | image_url}}" alt="T-shirt with Tape Details" width="50" height="50">
+      <h3>T-shirt with Tape Details</h3>
+      <p>$120</p>
+    </div>
+    <!-- Repeat product cards -->
+  </div>
+  <a href="#" class="btn-secondary">View All</a>
+  {% endfor %}
+</section> {% endcomment %}
+
+
+    
+    
+     
+       
+
+       
+        
+        
+   
+    
+    
+
+    
