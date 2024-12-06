@@ -1,0 +1,237 @@
+<section>
+
+  <div class="comparison-section">
+    <div class="features-list">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
+      <div class="features-section">
+     
+        <ul class="features-list">
+          <ul class="features-list">
+            {% for block in section.blocks %}
+              {% if block.type == 'feature' %}
+              <li>{{ block.settings.feature }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="comparison-table">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="bamboo-header">Bamboo</th>
+            <th class="cotton-header">Cotton</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in section.blocks %}
+            {% if block.type == 'brands_feature' %}
+            <tr>
+              <td>{{ block.settings.brands_feature }}</td> <!-- Use the feature name from the block -->
+              <td class="bamboo-cell">{% if block.settings.bamboo %}✔{% else %}❌{% endif %}</td>
+              <td class="cotton-cell">{% if block.settings.cotton %}✔{% else %}❌{% endif %}</td>
+            </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+
+  .comparison-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .features-list {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .features-list h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .features-list p {
+    margin-bottom: 20px;
+  }
+  
+  .features-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .features-list li {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .features-list li::before {
+    content: "✔";
+    color: #000000;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .comparison-table {
+    margin-top: 5px;
+    flex: 1;
+  }
+  
+  .comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .comparison-table th, .comparison-table td {
+    border: 1px solid ;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  
+  
+  .comparison-table .bamboo-header, .comparison-table .bamboo-cell {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .comparison-table .cotton-header, .comparison-table .cotton-cell {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .comparison-table th {
+    font-weight: bold;
+  }
+  
+  .comparison-table tr:first-child th:nth-child(1) {
+    border:none !important
+  }
+  
+  .comparison-table tr:first-child th:nth-child(2) {
+    border-top-left-radius: 8px; 
+  }
+  
+  .comparison-table tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+  }
+  
+  .comparison-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  .comparison-table tr:first-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  .comparison-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  
+
+  @media (max-width: 768px) {
+    .comparison-section {
+      flex-direction: column; /* Stacks the text and table vertically on smaller screens */
+    }
+
+    .features-list {
+      margin-right: 0; /* Removes the right margin when stacked */
+    }
+  }
+</style> 
+
+
+{% schema %}
+{
+  "name": "comparison-brands",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Zarano vs Other Brands</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Invest in your well-being and enjoy a peaceful, comfortable night's sleep with bamboo bedding today."
+    }
+ 
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Feature",
+          "default": "Improve sleep quality"
+        },
+      ]
+    },
+    {
+      "type": "brands_feature",
+      "name": "Brand Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brands_feature",
+          "label": "Brand Feature",
+          "default": "Thermo Regulatings"
+        },
+        {
+          "type": "checkbox",
+          "id": "bamboo",
+          "label": "Bamboo",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "cotton",
+          "label": "Cotton",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "comparison-brands",
+      "blocks": [
+        { "type": "feature", "settings": { "feature": "Improve sleep quality" } },
+        { "type": "feature", "settings": { "feature": "Improve mood" } },
+        { "type": "feature", "settings": { "feature": "improve skin-health" } },
+        { "type": "feature", "settings": { "feature": "Imrpove productivity" } },
+        { "type": "feature", "settings": { "feature": "imrpoved quality of life" } },
+        {
+          "type": "brands_feature",
+          "settings": { "brands_feature": "Thermo Regulatings", "bamboo": true, "cotton": false }
+        },
+        {
+          "type": "brands_feature",
+          "settings": { "brands_feature": "Anti-Microbal", "bamboo": true, "cotton": false }
+        },
+        {
+          "type": "brands_feature",
+          "settings": { "brands_feature": "Hypo-Allegrci", "bamboo": true, "cotton": false }
+        },
+        {
+          "type": "brands_feature",
+          "settings": { "brands_feature": "Skin & hair Friendly", "bamboo": true, "cotton": false }
+        },
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -268,68 +268,12 @@
         onload="this.media='all'"
       >
     {%- endif -%}
-
-{% comment %} 
- facebook
-    <script>
-      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-      if (Shopify.designMode) {
-        document.documentElement.classList.add('shopify-design-mode');
-      }
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var chatbox = document.getElementById('fb-customer-chat');
-        if (chatbox) {
-          chatbox.setAttribute('page_id', '102550242394058'); // Ensure this is correct
-          chatbox.setAttribute('attribution', 'biz_inbox');
-          chatbox.setAttribute('theme_color', '#0084ff');
-          chatbox.setAttribute('logged_in_greeting', 'Hi! How can we help you?');
-          chatbox.setAttribute('logged_out_greeting', 'Hi! Please log in to chat with us.');
-        } else {
-          console.error('Chatbox element not found');
-        }
-      });
-  
-      window.fbAsyncInit = function () {
-        FB.init({
-          xfbml: true,
-          version: 'v21.0',
-        });
-        console.log('Facebook SDK initialized'); // Confirm SDK initialization
-      };
-
-      (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, 'script', 'facebook-jssdk');
-    </script> {% endcomment %}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    {% comment %}
-      <div id="chat-buttons" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-      <a href="https://wa.me/01784994944" target="_blank" style="margin: 5px; text-decoration: none;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 50px; height: 50px;">
-      </a>
-    {% endcomment %}
 
-    {% comment %} <div id="fb-root"></div>
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
-   {% endcomment %}
-   
-    {% comment %}
-      <a href="https://www.instagram.com/YOUR_INSTAGRAM_HANDLE/" target="_blank" style="margin: 5px; text-decoration: none;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 50px; height: 50px;">
-        </a>
-      </div>
-    {% endcomment %}
 
-    {% render 'tutorial' %} 
+    {% comment %} {% render 'tutorial' %}  {% endcomment %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

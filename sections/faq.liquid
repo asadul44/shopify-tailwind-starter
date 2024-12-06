@@ -1,0 +1,175 @@
+
+<script src="{{ 'faq.js' | asset_url }}" defer="defer"></script>
+<section>
+    <div class="faq-section">
+      <div class="faq-grid">
+        <div class="faq-header">
+          <h2>{{ section.settings.title }}</h2>
+          <button class="faq-button">{{ section.settings.button_text }}</button>
+        </div>
+        <div class="faq-list">
+          {% for block in section.blocks %}
+            <div class="faq-item">
+              <summary>{{ block.settings.question }} <span class="caret">{% render 'icon-caret' %}</span></summary>
+              <div class="faq-content">
+                <p>{{ block.settings.answer }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+    .faq-section {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      
+      .faq-header {
+        display: block; /* Change from flex to block to remove centering */
+        position: sticky; /* Keep it sticky to stay at the top */
+        top: 0; /* Position it at the top of the section */
+        background-color: #f5f5f5; /* Match the background color */
+        z-index: 10; /* Ensure it stays above other content */ /* Add some padding for aesthetics */
+    }
+      
+   
+      .faq-header h2 {
+        font-size: 35px; /* Increase the font size */
+        font-weight: bold;
+      }
+
+      .faq-button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        width: 150px; /* Set a specific width */
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight:bold
+      }
+
+      
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .faq-item {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      
+      .faq-item summary {
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .faq-content {
+        display: none;
+        padding-top: 10px;
+      }
+      
+    
+      .caret {
+        transition: transform 0.3s;
+        transform-origin: center center; /* Ensure rotation happens around the center */
+        width: 16px; /* Set a fixed width */
+        height: 16px; /* Set a fixed height */
+        display: inline-block; /* Ensure it behaves like an inline element */
+    }
+      
+    .faq-item.open .caret {
+        transform: rotate(180deg);
+    }
+
+      @media (max-width: 768px) {
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+</style>
+
+
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Have Questions? We Have Answers."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Ask Us Now"
+    },
+    {
+      "type": "text",
+      "id": "faq_1",
+      "label": "FAQ 1",
+      "default": "What is included in the bedsheet set? The bedsheet set includes..."
+    }
+    // Add more FAQ settings as needed
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is included in the bedsheet set?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>The bedsheet set includes...</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        }
+        // Add more blocks as needed
+      ]
+    }
+  ]
+}
+{% endschema %}

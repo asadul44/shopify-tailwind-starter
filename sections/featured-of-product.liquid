@@ -1,0 +1,276 @@
+<section>
+
+<div class="bamboo-features">
+  <h2>{{ section.settings.title }}</h2>
+  <div class="features-layout">
+    <!-- Left Features -->
+    <div class="features-column">
+      {% assign features = (1..3) %}
+      {% for feature in features %}
+        <div class="feature-item">
+          {% assign image_key = "feature_" | append: feature | append: "_image" %}
+          {% assign title_key = "feature_" | append: feature | append: "_title" %}
+          {% assign description_key = "feature_" | append: feature | append: "_description" %}
+
+          {% assign image = section.settings[image_key] %}
+          {% assign title = section.settings[title_key] %}
+          {% assign description = section.settings[description_key] %}
+          
+          {% if image %}
+            <img src="{{ image | image_url }}" alt="{{ title }}" width="100%" height="auto" />
+          {% else %}
+            <img src="{{ 'property.png' | asset_url }}" alt="Placeholder" width="100%" height="auto" />
+          {% endif %}
+          <h3>{{ title }}</h3>
+          <p>{{ description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Middle Image -->
+    <div class="features-image">
+      {% if section.settings.main_image %}
+        <img src="{{ section.settings.main_image | image_url }}" alt="Main Feature Image" width="100%" height="auto" />
+      {% else %}
+        <img src="{{ 'a.jpg' | asset_url }}" alt="Placeholder Main Image" width="100%" height="auto" />
+      {% endif %}
+    </div>
+
+    <!-- Right Features -->
+    <div class="features-column">
+      {% assign features = (4..6) %}
+      {% for feature in features %}
+        <div class="feature-item">
+          {% assign image_key = "feature_" | append: feature | append: "_image" %}
+          {% assign title_key = "feature_" | append: feature | append: "_title" %}
+          {% assign description_key = "feature_" | append: feature | append: "_description" %}
+
+          {% assign image = section.settings[image_key] %}
+          {% assign title = section.settings[title_key] %}
+          {% assign description = section.settings[description_key] %}
+          
+          {% if image %}
+            <img src="{{ image | image_url }}" alt="{{ title }}" width="100%" height="auto" />
+          {% else %}
+            <img src="{{ 'property.png' | asset_url }}" alt="Placeholder" width="100%" height="auto" />
+          {% endif %}
+          <h3>{{ title }}</h3>
+          <p>{{ description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+</section>
+
+
+<style>
+  .bamboo-features {
+    text-align: center;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .bamboo-features h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .features-layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .features-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .feature-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-item img {
+    width: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  .feature-item p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .features-image img {
+    width: 100%;
+    max-width: 300px;
+    height: 350px; /* Maintain height for consistency */
+    /* Round top right corner */
+    /* Square bottom right corner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;  
+  }
+  /* Add media query for mobile responsiveness */
+  @media (max-width: 768px) {
+    .features-layout {
+      grid-template-columns: 1fr;
+    }
+    .features-image {
+      order: -1; /* Move the main image to the top */
+    }
+    .features-image img {
+      max-width: 100%;
+    }
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "featured-of-product",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Why Bamboo Is Suitable For You</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_1_image",
+      "label": "Feature 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Feature 1 Title",
+      "default": "ANTI MICROBIAL"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_description",
+      "label": "Feature 1 Description",
+      "default": "Prevents 99.7% of bacterial growth, keeping your skin clear and ideal for acne-prone skin."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_2_image",
+      "label": "Feature 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Feature 2 Title",
+      "default": "ANTI BACTERIAL"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_description",
+      "label": "Feature 2 Description",
+      "default": "Stays fresh for longer, less washing up to 3 times less compared to other materials."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_3_image",
+      "label": "Feature 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_title",
+      "label": "Feature 3 Title",
+      "default": "THERMO REGULATING"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_description",
+      "label": "Feature 3 Description",
+      "default": "Self cooling bamboo bedsheets. 4° cooler than traditional cotton sheets."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_4_image",
+      "label": "Feature 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_title",
+      "label": "Feature 4 Title",
+      "default": "ANTI STATIC"
+    },
+    {
+      "type": "text",
+      "id": "feature_4_description",
+      "label": "Feature 4 Description",
+      "default": "A smoother sleep experience. Bamboo won’t create static shocks."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_5_image",
+      "label": "Feature 5 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_title",
+      "label": "Feature 5 Title",
+      "default": "ODOR FREE & PET FRIENDLY"
+    },
+    {
+      "type": "text",
+      "id": "feature_5_description",
+      "label": "Feature 5 Description",
+      "default": "Designed to resist odors and perfect for homes with pets."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_6_image",
+      "label": "Feature 6 Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_6_title",
+      "label": "Feature 6 Title",
+      "default": "BREATHABLE TECHNOLOGY"
+    },
+    {
+      "type": "text",
+      "id": "feature_6_description",
+      "label": "Feature 6 Description",
+      "default": "Stay cool and dry with moisture-wicking and airflow-enhancing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "featured-of-product"
+    }
+  ]
+}
+{% endschema %}
